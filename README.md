@@ -13,8 +13,8 @@
 
 ## NOTICE
 
-- Please read through this `README.md` to better understand the project's source code and setup instructions.
-- Also, make sure to review the contents of the `License/` directory.
+- Please read through this `README.md` to better understand the project's source code and setup instructions
+- Also, make sure to review the contents of the `License/` directory
 - Your attention to these details is appreciated — enjoy exploring the project!
 
 ---
@@ -98,7 +98,7 @@
                                   │  (TLS termination)  │
                                   └──────────┬──────────┘
                                              ↓
-                             ┌───────────────┴───────────────┐
+                             ┌───────────────┴────────────────┐
                              │      Elixir Reverse Proxy      │
                              │  (Plug.Router or Phoenix App)  │
                              └────────┬──────────┬────────────┘
