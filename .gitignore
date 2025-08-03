@@ -10,3 +10,23 @@
 
 
 # particular repository ignores:
+
+!.formatter.exs
+!mix.exs
+!mix.lock
+!.tool-versions
+
+!config/
+!config/config.exs
+
+!lib/
+!lib/elixirgate.ex
+
+!lib/elixirgate/
+!lib/elixirgate/application.ex
+!lib/elixirgate/reverse_proxy.ex
+!lib/elixirgate/router.ex
+
+!test/
+!test/elixirgate_test.exs
+!test/test_helper.exs
