@@ -11,6 +11,7 @@ include:
 
 variables:
     SECRET_DETECTION_ENABLED: "true"
+    SECURE_LOG_LEVEL: "debug"
 
 secret_detection:
     stage: secret-detection
