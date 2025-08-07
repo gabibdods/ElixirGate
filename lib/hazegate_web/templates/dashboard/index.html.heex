@@ -1,0 +1,4 @@
+<h1>Usage Statistics</h1>
+<%= for {metric, value} <- @stats do %>
+	<p><strong><%= metric %>:</strong> <%= value %></p>
+<% end %>

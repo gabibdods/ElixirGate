@@ -29,13 +29,13 @@
 !assets/css/app.css
 
 !assets/js/
-!assets/js/app.js
+!assets/js/app.js.bkp
 
 !assets/vendor/
-!assets/vendor/daisyui.js
-!assets/vendor/daisyui-theme.js
-!assets/vendor/heroicons.js
-!assets/vendor/topbar.js
+!assets/vendor/daisyui.js.bkp
+!assets/vendor/daisyui-theme.js.bkp
+!assets/vendor/heroicons.js.bkp
+!assets/vendor/topbar.js.bkp
 
 !config/
 !config/config.exs
@@ -71,12 +71,21 @@
 !lib/hazegate_web/controllers/error_json.ex
 !lib/hazegate_web/controllers/page_controller.ex
 !lib/hazegate_web/controllers/page_html.ex
+!lib/hazegate_web/controllers/dashboard_controller.ex
 
 !lib/hazegate_web/controllers/page_html/
 !lib/hazegate_web/controllers/page_html/home.html.heex
 
 !lib/hazegate_web/plugs/
 !lib/hazegate_web/plugs/reverse_proxy.ex
+
+!lib/hazegate_web/templates/
+
+!lib/hazegate_web/templates/dashboard/
+!lib/hazegate_web/templates/dashboard/index.html.heex
+
+!lib/hazegate_web/views/
+!lib/hazegate_web/views/dashboard_view.ex
 
 !priv/
 
@@ -104,7 +113,7 @@
 !priv/static/assets/css/app.css
 
 !priv/static/assets/js/
-!priv/static/assets/js/app.js
+!priv/static/assets/js/app.js.bkp
 
 !priv/static/images/
 !priv/static/images/logo.svg
