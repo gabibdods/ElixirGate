@@ -21,7 +21,7 @@ defmodule HazegateWeb.Router do
   end
 
   pipeline :proxy do
-    plug HazegateWeb.Plugs.ReverseProxy, target: Application.get_env(:hazegate, :proxy_target)
+    plug HazegateWeb.Plugs.ReverseProxy, target: Application.compile_env(:hazegate, :proxy_target)
   end
 
   scope "/" do

@@ -48,6 +48,22 @@ defmodule HazegateWeb do
     end
   end
 
+  def view do
+    quote do
+      use Phoenix.View,
+        root: "lib/hazegate_web/templates",
+        namespace: HazegateWeb
+
+      import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
+      import Phoenix.HTML
+      import Phoenix.HTML.Form
+      use PhoenixHTMLHelpers
+      import Phoenix.View
+      import HazegateWeb.ErrorHelpers
+      alias HazegateWeb.Router.Helpers, as: Routes
+    end
+  end
+
   def live_view do
     quote do
       use Phoenix.LiveView

@@ -41,10 +41,12 @@ defmodule Hazegate.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.8.0"},
+      {:phoenix_view, "~> 2.0"},
       {:phoenix_ecto, "~> 4.5"},
+      {:phoenix_html_helpers, "~> 1.0"},
       {:ecto_sql, "~> 3.13"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 4.1"},
+      {:phoenix_html, "~> 4.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 1.1.0"},
       {:lazy_html, ">= 0.1.0", only: :test},
@@ -66,7 +68,6 @@ defmodule Hazegate.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
-      {:plug, "~> 1.14"},
       {:plug_cowboy, "~> 2.6"},
       {:httpoison, "~> 1.8"}
     ]

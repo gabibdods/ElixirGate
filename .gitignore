@@ -26,9 +26,11 @@
 !assets/tsconfig.json
 
 !assets/css/
+!assets/css/app.css
 !assets/css/app.css.bkp
 
 !assets/js/
+!assets/js/app.js
 !assets/js/app.js.bkp
 
 !assets/vendor/
@@ -51,6 +53,7 @@
 !lib/hazegate/
 !lib/hazegate/application.ex
 !lib/hazegate/mailer.ex
+!lib/hazegate/metrics.ex
 !lib/hazegate/repo.ex
 
 !lib/hazegate_web/
@@ -67,11 +70,11 @@
 !lib/hazegate_web/components/layouts/root.html.heex.bkp
 
 !lib/hazegate_web/controllers/
+!lib/hazegate_web/controllers/dashboard_controller.ex
 !lib/hazegate_web/controllers/error_html.ex
 !lib/hazegate_web/controllers/error_json.ex
 !lib/hazegate_web/controllers/page_controller.ex
 !lib/hazegate_web/controllers/page_html.ex
-!lib/hazegate_web/controllers/dashboard_controller.ex
 
 !lib/hazegate_web/controllers/page_html/
 !lib/hazegate_web/controllers/page_html/home.html.heex.bkp
@@ -86,6 +89,7 @@
 
 !lib/hazegate_web/views/
 !lib/hazegate_web/views/dashboard_view.ex
+!lib/hazegate_web/views/error_helpers.ex
 
 !priv/
 
@@ -110,9 +114,11 @@
 !priv/static/assets/
 
 !priv/static/assets/css/
+!priv/static/assets/css/app.css
 !priv/static/assets/css/app.css.bkp
 
 !priv/static/assets/js/
+!priv/static/assets/js/app.js
 !priv/static/assets/js/app.js.bkp
 
 !priv/static/images/

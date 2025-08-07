@@ -7,6 +7,7 @@ defmodule Hazegate.Application do
 
   @impl true
   def start(_type, _args) do
+    Application.put_env(:hazegate, :start_time, :erlang.system_time(:seconds))
     children = [
       HazegateWeb.Telemetry,
       Hazegate.Repo,
