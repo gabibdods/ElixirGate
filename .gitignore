@@ -27,17 +27,15 @@
 
 !assets/css/
 !assets/css/app.css
-!assets/css/app.css.bkp
 
 !assets/js/
 !assets/js/app.js
-!assets/js/app.js.bkp
 
 !assets/vendor/
-!assets/vendor/daisyui.js.bkp
-!assets/vendor/daisyui-theme.js.bkp
-!assets/vendor/heroicons.js.bkp
-!assets/vendor/topbar.js.bkp
+!assets/vendor/daisyui.js
+!assets/vendor/daisyui-theme.js
+!assets/vendor/heroicons.js
+!assets/vendor/topbar.js
 
 !config/
 !config/config.exs
@@ -56,6 +54,9 @@
 !lib/hazegate/metrics.ex
 !lib/hazegate/repo.ex
 
+!lib/hazegate/worker/
+!lib/hazegate/worker/*.ex
+
 !lib/hazegate_web/
 !lib/hazegate_web/endpoint.ex
 !lib/hazegate_web/gettext.ex
@@ -67,7 +68,7 @@
 !lib/hazegate_web/components/layouts.ex
 
 !lib/hazegate_web/components/layouts/
-!lib/hazegate_web/components/layouts/root.html.heex.bkp
+!lib/hazegate_web/components/layouts/root.html.heex
 
 !lib/hazegate_web/controllers/
 !lib/hazegate_web/controllers/dashboard_controller.ex
@@ -77,7 +78,7 @@
 !lib/hazegate_web/controllers/page_html.ex
 
 !lib/hazegate_web/controllers/page_html/
-!lib/hazegate_web/controllers/page_html/home.html.heex.bkp
+!lib/hazegate_web/controllers/page_html/home.html.heex
 
 !lib/hazegate_web/plugs/
 !lib/hazegate_web/plugs/reverse_proxy.ex
@@ -115,11 +116,9 @@
 
 !priv/static/assets/css/
 !priv/static/assets/css/app.css
-!priv/static/assets/css/app.css.bkp
 
 !priv/static/assets/js/
 !priv/static/assets/js/app.js
-!priv/static/assets/js/app.js.bkp
 
 !priv/static/images/
 !priv/static/images/logo.svg
