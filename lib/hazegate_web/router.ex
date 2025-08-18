@@ -18,15 +18,15 @@ defmodule HazegateWeb.Router do
 
   pipeline :admin do
     plug :basic_auth,
-	  username: System.get_env("ADMIN_USER"),
-	  password: System.get_env("ADMIN_PASS"),
-	  realm: "Hazegate Admin"
+      username: System.get_env("ADMIN_USER"),
+      password: System.get_env("ADMIN_PASS"),
+      realm: "Hazegate Admin"
   end
 
   pipeline :proxy do
     plug HazegateWeb.Plugs.ReverseProxy,
-	  strip_prefix: true,
-	  init_mode: :runtime
+      strip_prefix: true,
+      init_mode: :runtime
   end
 
   scope "/admn", HazegateWeb do

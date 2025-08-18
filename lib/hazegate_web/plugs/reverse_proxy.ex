@@ -7,8 +7,7 @@ defmodule HazegateWeb.Plugs.ReverseProxy do
   @impl true
   def init(opts) do
     upstreams = [
-      {"/django", "http://ffnx:80"},
-      {"/fastapi", "http://ffnx:80"}
+      {"/ff", "http://ffnx:80/ff"}
     ]
       |> Enum.map(fn {prefix, targets} ->
         %{prefix: ensure_leading_slash(prefix), targets: List.wrap(targets)}

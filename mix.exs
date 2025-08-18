@@ -34,7 +34,7 @@ defmodule Hazegate.MixProject do
 
   defp deps do
     [
-	  {:plug, "~> 1.15"},
+      {:plug, "~> 1.15"},
       {:plug_cowboy, "~> 2.7"},
       {:httpoison, "~> 1.8"},
       {:finch, "~> 0.18"},
