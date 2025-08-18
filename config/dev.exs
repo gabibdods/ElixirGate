@@ -4,17 +4,18 @@ config :hazegate, HazegateWeb.Endpoint,
   server: true,
   http: [
     ip: {127, 0, 0, 1},
-	port: 4000],
-    check_origin: false,
-    code_reloader: true,
-    debug_errors: true,
-    watchers: [
-      esbuild: {Esbuild, :install_and_run, [:hazegate, ~w(--sourcemap=inline --watch)]},
-      tailwind: {Tailwind, :install_and_run, [:hazegate, ~w(--watch)]}
-    ]
+    port: 4000
+  ],
+  check_origin: false,
+  code_reloader: true,
+  debug_errors: true,
+  watchers: [
+    esbuild: {Esbuild, :install_and_run, [:hazegate, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:hazegate, ~w(--watch)]}
+  ]
 
-    config :hazegate, HazegateWeb.Endpoint,
-    live_reload: [
+config :hazegate, HazegateWeb.Endpoint,
+  live_reload: [
     web_console_logger: true,
     patterns: [
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
@@ -25,7 +26,7 @@ config :hazegate, HazegateWeb.Endpoint,
 
 config :hazegate, dev_routes: true
 
-Do not include metadata nor timestamps in development logs
+#Do not include metadata nor timestamps in development logs
 config :logger, :default_formatter, format: "[$level] $message\n"
 
 config :phoenix, :stacktrace_depth, 20

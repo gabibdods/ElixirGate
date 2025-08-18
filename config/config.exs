@@ -43,5 +43,5 @@ config :phoenix, :json_library, Jason
 
 import_config "#{config_env()}.exs"
 
-#import_config "#{Mix.env()}.secret.exs"
-import_config "config.secret.exs"
+#import_config "#{Mix.env()}.secrets.exs"
+import_config "config.secrets.exs"

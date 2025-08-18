@@ -22,20 +22,20 @@
 !mix.exs
 !mix.lock
 
-!assets/
-!assets/tsconfig.json
+assets/
+assets/tsconfig.json
 
-!assets/css/
-!assets/css/app.css
+assets/css/
+assets/css/app.css
 
-!assets/js/
-!assets/js/app.js
+assets/js/
+assets/js/app.js
 
-!assets/vendor/
-!assets/vendor/daisyui.js
-!assets/vendor/daisyui-theme.js
-!assets/vendor/heroicons.js
-!assets/vendor/topbar.js
+assets/vendor/
+assets/vendor/daisyui.js
+assets/vendor/daisyui-theme.js
+assets/vendor/heroicons.js
+assets/vendor/topbar.js
 
 !config/
 !config/config.exs
@@ -108,20 +108,20 @@
 !priv/repo/migrations/
 !priv/repo/migrations/.formatter.exs
 
-!priv/static/
-!priv/static/favicon.ico
-!priv/static/robots.txt
+priv/static/
+priv/static/favicon.ico
+priv/static/robots.txt
 
-!priv/static/assets/
+priv/static/assets/
 
-!priv/static/assets/css/
-!priv/static/assets/css/app.css
+priv/static/assets/css/
+priv/static/assets/css/app.css
 
-!priv/static/assets/js/
-!priv/static/assets/js/app.js
+priv/static/assets/js/
+priv/static/assets/js/app.js
 
-!priv/static/images/
-!priv/static/images/logo.svg
+priv/static/images/
+priv/static/images/logo.svg
 
 !test/
 !test/hazegate_test.exs

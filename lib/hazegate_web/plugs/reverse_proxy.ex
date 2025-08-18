@@ -50,9 +50,7 @@ defmodule HazegateWeb.Plugs.ReverseProxy do
 
     forwarded_path =
       if strip? and prefix != "" do
-        conn.request_path
-        |> String.replace_prefix(prefix, "")
-        |> case do
+        case String.replace_prefix(conn.request_path, prefix, "") do
           "" -> "/"
           s -> s
         end
@@ -63,33 +61,34 @@ defmodule HazegateWeb.Plugs.ReverseProxy do
     qs = if conn.query_string == "", do: "", else: "?" <> conn.query_string
     url = base <> forwarded_path <> qs
 
-    headers =
+    clean_req_headers =
       conn.req_headers
-      |> put_forwarded_headers(conn, prefix)
+      |> drop_hop_by_hop()
+      |> Enum.reject(fn {k, _} -> String.downcase(k) in [ "content-lenght", "transfer-encoding", "expect"] end)
+      |> put_forwarded_headers(conn, if(strip?, do: prefix, else: ""))
 
     method =
       conn.method
       |> String.downcase()
       |> String.to_existing_atom()
 
-    finch_req = Finch.build(method, url, headers, body)
+    finch_req = Finch.build(method, url, clean_req_headers, body)
 
-    case Finch.request(finch_req, HazegateFinch, receive_timeout: 30_000, pool_timeout: 5_000) do
+    timeout_ms =
+      if method ==:post and String.starts_with?(conn.request_path, "/ff/gate") do
+        90_000
+      else
+        30_000
+      end
+
+      opts = [receive_timeout: timeout_ms, request_timeout: timeout_ms, pool_timeout: 10_000]
+
+    case Finch.request(finch_req, HazegateFinch, opts) do
       {:ok, %Finch.Response{status: status, headers: resp_headers, body: resp_body}} ->
-        resp_headers =
-		  Enum.map(resp_headers, fn
-		    {"location", loc} ->
-			  if String.starts_with?(loc, "/") do
-			    {"location", prefix <> loc}
-			  else
-			    {"location", loc}
-			  end
-			other ->
-			  other
-          end)
-		conn
+        conn
         |> put_resp_headers_safe(resp_headers)
-        |> send_resp(status, resp_body) |> halt()
+        |> send_resp(status, resp_body)
+        |> halt()
 
       {:error, reason} ->
         send_resp(conn, 504, "Upstream error: #{inspect(reason)}") |> halt()
@@ -99,8 +98,7 @@ defmodule HazegateWeb.Plugs.ReverseProxy do
   defp http_method_atom("GET"), do: :get
   defp http_method_atom("POST"), do: :post
   defp http_method_atom("PUT"), do: :put
-
- defp http_method_atom("PATCH"), do: :patch
+  defp http_method_atom("PATCH"), do: :patch
   defp http_method_atom("DELETE"), do: :delete
   defp http_method_atom("HEAD"), do: :head
   defp http_method_atom("OPTIONS"), do: :options

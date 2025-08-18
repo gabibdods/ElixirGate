@@ -11,10 +11,10 @@ defmodule Hazegate.Application do
       Hazegate.Repo,
       {DNSCluster, query: Application.get_env(:hazegate, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Hazegate.PubSub},
-	  {Finch, name: HazegateFinch},
-      #Hazegate.Worker.start_link(arg)
-      #{Hazegate.Worker, arg},
+      {Finch, name: HazegateFinch},
       HazegateWeb.Endpoint
+      #Hazegate.Worker.start_link(arg),
+      #{Hazegate.Worker, arg}
     ]
 
     opts = [strategy: :one_for_one, name: Hazegate.Supervisor]
