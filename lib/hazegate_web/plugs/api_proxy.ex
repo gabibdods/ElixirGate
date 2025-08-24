@@ -1,4 +1,4 @@
-defmodule HazegateWeb.Plugs.ReverseProxy do
+defmodule HazegateWeb.Plugs.ApiProxy do
   @behaviour Plug
   import Plug.Conn
 
@@ -6,7 +6,7 @@ defmodule HazegateWeb.Plugs.ReverseProxy do
 
   @impl true
   def init(opts) do
-    upstreams = Application.fetch_env!(:hazegate, :upstreams_proxy)
+    upstreams = Application.fetch_env!(:hazegate, :upstreams_api)
     |> Enum.map(fn {prefix, targets} -> %{prefix: ensure_leading_slash(prefix), targets: List.wrap(targets)} end)
     |> Enum.sort_by(&String.length(&1.prefix), :desc)
 

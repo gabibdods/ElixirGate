@@ -1,41 +1,43 @@
 import Config
 
 config :hazegate, HazegateWeb.Endpoint,
-  server: true,
-  http: [
-    ip: {127, 0, 0, 1},
-    port: 4000
+  url: [
+    host: "localhost",
+    port: 4000,
+    scheme: "http"
   ],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
+  render_errors: [layout: true],
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:hazegate, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:hazegate, ~w(--watch)]}
-  ]
-
-config :hazegate, HazegateWeb.Endpoint,
+  ],
   live_reload: [
     web_console_logger: true,
     patterns: [
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/hazegate_web/(?:controllers|live|components|router)/?.*\.(ex|heex)$"
+      ~r"lib/hazegate_web/(?:controllers|live|components|router)/?.*\.(ex|heex)$",
+      ~r"lib/hazegate_web/plugs/(?:reverse_proxy|api_proxy).*ex$"
     ]
   ]
 
-config :hazegate, dev_routes: true
+config :hazegate, Hazegate.Repo, show_sensitive_data_on_connection_error: true
 
-#Do not include metadata nor timestamps in development logs
-config :logger, :default_formatter, format: "[$level] $message\n"
+config :swoosh,
+  local: true
+
+config :logger, :default_formatter,
+  level: :debug,
+  format: "$time $metadata [$level] $message\n",
+  metadata: [:request_id],
+  colors: [enabled: true]
 
 config :phoenix, :stacktrace_depth, 20
-
-config :phoenix, :plug_init_mode, :runtime
 
 config :phoenix_live_view,
   debug_heex_annotations: true,
   debug_attributes: true,
   enable_expensive_runtime_checks: true
-
-config :swoosh, :api_client, false

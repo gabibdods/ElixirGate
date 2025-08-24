@@ -54,11 +54,17 @@ assets/vendor/topbar.js
 !lib/hazegate/metrics.ex
 !lib/hazegate/repo.ex
 
+!lib/hazegate/logging/
+!lib/hazegate/logging/error_log.ex
+!lib/hazegate/logging/ingest.ex
+!lib/hazegate/logging/logger_backend.ex
+
 !lib/hazegate/worker/
 !lib/hazegate/worker/*.ex
 
 !lib/hazegate_web/
 !lib/hazegate_web/endpoint.ex
+!lib/hazegate_web/fallback_controller.ex
 !lib/hazegate_web/gettext.ex
 !lib/hazegate_web/router.ex
 !lib/hazegate_web/telemetry.ex
@@ -81,6 +87,8 @@ assets/vendor/topbar.js
 !lib/hazegate_web/controllers/page_html/home.html.heex
 
 !lib/hazegate_web/plugs/
+!lib/hazegate_web/plugs/api_proxy.ex
+!lib/hazegate_web/plugs/error_capture.ex
 !lib/hazegate_web/plugs/reverse_proxy.ex
 
 !lib/hazegate_web/templates/
@@ -108,9 +116,9 @@ assets/vendor/topbar.js
 !priv/repo/migrations/
 !priv/repo/migrations/.formatter.exs
 
-priv/static/
-priv/static/favicon.ico
-priv/static/robots.txt
+!priv/static/
+!priv/static/favicon.ico
+!priv/static/robots.txt
 
 priv/static/assets/
 
@@ -120,8 +128,8 @@ priv/static/assets/css/app.css
 priv/static/assets/js/
 priv/static/assets/js/app.js
 
-priv/static/images/
-priv/static/images/logo.svg
+!priv/static/images/
+!priv/static/images/logo.svg
 
 !test/
 !test/hazegate_test.exs

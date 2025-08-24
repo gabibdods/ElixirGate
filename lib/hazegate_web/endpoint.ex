@@ -7,7 +7,7 @@ defmodule HazegateWeb.Endpoint do
     store: :cookie,
     key: "_hazegate_key",
     signing_salt: "S/pd75LV",
-    same_site: "Lax"
+    same_site: "lax"
   ]
 
   socket "/live", Phoenix.LiveView.Socket,
@@ -24,7 +24,8 @@ defmodule HazegateWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :hazegate
+    plug Phoenix.Ecto.CheckRepoStatus,
+      otp_app: :hazegate
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
@@ -32,6 +33,7 @@ defmodule HazegateWeb.Endpoint do
     cookie_key: "request_logger"
 
   plug Plug.RequestId
+
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
 
   plug Plug.Parsers,
@@ -40,7 +42,12 @@ defmodule HazegateWeb.Endpoint do
     json_decoder: Phoenix.json_library()
 
   plug Plug.MethodOverride
+
   plug Plug.Head
+
   plug Plug.Session, @session_options
+
+  plug HazegateWeb.Plugs.ErrorCapture
+
   plug HazegateWeb.Router
 end

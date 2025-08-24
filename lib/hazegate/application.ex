@@ -12,6 +12,7 @@ defmodule Hazegate.Application do
       {DNSCluster, query: Application.get_env(:hazegate, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Hazegate.PubSub},
       {Finch, name: HazegateFinch},
+      {Task.Supervisor, name: Hazegate.TaskSup},
       HazegateWeb.Endpoint
       #Hazegate.Worker.start_link(arg),
       #{Hazegate.Worker, arg}

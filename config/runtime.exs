@@ -1,21 +1,50 @@
 import Config
 
-maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
+config :hazegate, HazegateWeb.Endpoint,
+  secret_key_base: System.fetch_env!("SECRET_KEY_BASE")
 
 config :hazegate, Hazegate.Repo,
-  url: System.get_env("DATABASE_URL"),
-  pool_size: 10,
-  pool_count: 4,
-  socket_options: maybe_ipv6
+  username: System.fetch_env!("POSTGRES_USER"),
+  password: System.fetch_env!("POSTGRES_PASSWORD"),
+  hostname: System.fetch_env!("POSTGRES_HOST"),
+  database: System.fetch_env!("POSTGRES_DB")
+
+ups_proxy =
+  System.fetch_env!("UPSTREAMS_PROXY")
+  |> String.split(",", trim: true)
+  |> Enum.chunk_every(2)
+  |> Enum.map(fn
+    [f, s] -> {f, s}
+    other -> raise "UPSTREAMS_PROXY incorrect: #{inspect(other)}"
+    end
+  )
+config :hazegate, :upstreams_proxy, ups_proxy
+
+ups_api =
+  System.fetch_env!("UPSTREAMS_API")
+  |> String.split(",", trim: true)
+  |> Enum.chunk_every(2)
+  |> Enum.map(fn
+    [f, s] -> {f, s}
+    other -> raise "UPSTREAMS_API incorrect: #{inspect(other)}"
+    end
+  )
+config :hazegate, :upstreams_api, ups_api
 
 config :hazegate, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
-config :hazegate, HazegateWeb.Endpoint,
-  server: true,
-  url: [host: "gabrieldigitprint.work", port: 443, scheme: "https"],
-  http: [ip: {0, 0, 0, 0}, port: 4000],
-  secret_key_base: System.get_env("SECRET_KEY_BASE")
+config :hazegate, :admin_auth,
+  username: System.fetch_env!("ADMIN_USER"),
+  password: System.fetch_env!("ADMIN_PASS")
 
-if System.get_env("HAZE_ENABLE_PROD_DASHBOARD") in ["1", "true"] do
-  config :hazegate, :prod_dashboard, true
-end
+config :logger,
+  backends: [
+    :console,
+    Hazegate.Logging.DBLoggerBackend
+  ]
+
+:logger.add_handler(
+  :hazegate_db_handler,
+  :logger_std_h,
+  %{level: :error}
+)

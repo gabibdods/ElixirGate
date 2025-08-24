@@ -5,16 +5,19 @@ config :hazegate,
   generators: [timestamp_type: :utc_datetime]
 
 config :hazegate, HazegateWeb.Endpoint,
-  url: [host: "localhost"],
-  adapter: Bandit.PhoenixAdapter,
-  render_errors: [
-    formats: [html: HazegateWeb.ErrorHTML, json: HazegateWeb.ErrorJSON],
-    layout: false
+  server: true,
+  http: [
+    ip: {0, 0, 0, 0},
+    port: 4000
   ],
+  adapter: Bandit.PhoenixAdapter,
+  render_errors: [formats: [html: HazegateWeb.ErrorHTML, json: HazegateWeb.ErrorJSON]],
   pubsub_server: Hazegate.PubSub,
-  live_view: [signing_salt: "o883pXlL"]
+  live_view: [signing_salt: "o883pXlL"],
+  cache_static_manifest: "priv/static/cache_manifest.json"
 
-config :hazegate, Hazegate.Mailer, adapter: Swoosh.Adapters.Local
+config :hazegate, Hazegate.Mailer,
+  adapter: Swoosh.Adapters.Local
 
 config :esbuild,
   version: "0.25.4",
@@ -35,13 +38,12 @@ config :tailwind,
     cd: Path.expand("..", __DIR__)
   ]
 
-config :logger, :default_formatter,
-  format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
-
 config :phoenix, :json_library, Jason
 
-import_config "#{config_env()}.exs"
+config :phoenix, :plug_init_mode, :runtime
 
+config :swoosh,
+  api_client: Swoosh.ApiClient.Req
+
+import_config "#{config_env()}.exs"
 #import_config "#{Mix.env()}.secrets.exs"
-import_config "config.secrets.exs"
