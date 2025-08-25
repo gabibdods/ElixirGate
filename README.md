@@ -1,4 +1,4 @@
-# ElixirGate
+# HazeGate
 
 # Self-Hosted WebHost Service with Elixir
 

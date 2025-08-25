@@ -15,7 +15,7 @@ ups_proxy =
   |> Enum.chunk_every(2)
   |> Enum.map(fn
     [f, s] -> {f, s}
-    other -> raise "UPSTREAMS_PROXY incorrect: #{inspect(other)}"
+    other -> raise "UPSTREAMS_PROXY incorrect: #{inspect(other)}\n"
     end
   )
 config :hazegate, :upstreams_proxy, ups_proxy
@@ -26,7 +26,7 @@ ups_api =
   |> Enum.chunk_every(2)
   |> Enum.map(fn
     [f, s] -> {f, s}
-    other -> raise "UPSTREAMS_API incorrect: #{inspect(other)}"
+    other -> raise "UPSTREAMS_API incorrect: #{inspect(other)}\n"
     end
   )
 config :hazegate, :upstreams_api, ups_api

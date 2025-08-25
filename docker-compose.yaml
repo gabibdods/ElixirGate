@@ -1,0 +1,51 @@
+services:
+  hgdb:
+    image: postgres:16
+    container_name: hgdb
+    env_file: [.env]
+    expose: [5432]
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres_dump:/dumps
+      - ./certs/server.crt:/var/lib/postgresql/server.crt:ro
+      - ./certs/server.key:/var/lib/postgresql/server.key:ro
+      - ./certs/ca.crt:/var/lib/postgresql/ca.crt:ro
+      - ./postgres/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+      - ./postgres/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
+    command: ["-c", "config_file=/etc/postgresql/postgresql.conf"]
+    restart: unless-stopped
+    networks: [gabibdods]
+
+  hgpr:
+    build: .
+    container_name: hgpr
+    env_file: [.env]
+    ports: [4000:4000]
+    depends_on: [hgdb]
+    restart: unless-stopped
+    networks: [gabibdods]
+
+  hgcf:
+    image: cloudflare/cloudflared:latest
+    container_name: hgcf
+    env_file: [.env]
+    command: tunnel --no-autoupdate run --token ${CF_TUNNEL_TOKEN}
+    depends_on: [hgpr]
+    restart: unless-stopped
+    networks: [gabibdods]
+
+  hgapi:
+    image: cloudflare/cloudflared:latest
+    container_name: hgapi
+    env_file: [.env]
+    command: tunnel --no-autoupdate run --token ${CF_API_TOKEN}
+    depends_on: [hgpr]
+    restart: unless-stopped
+    networks: [gabibdods]
+
+volumes:
+  postgres_data:
+
+networks:
+  gabibdods:
+    external: true

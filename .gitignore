@@ -16,14 +16,16 @@
 
 # particular repository ignores:
 
+!docker-compose.yaml
+!Dockerfile
+!entrypoint.sh
 !.formatter.exs
-!.tool-versions
-!AGENTS.md
 !mix.exs
 !mix.lock
+!.tool-versions
 
-assets/
-assets/tsconfig.json
+!assets/
+!assets/tsconfig.json
 
 assets/css/
 assets/css/app.css
@@ -52,12 +54,18 @@ assets/vendor/topbar.js
 !lib/hazegate/application.ex
 !lib/hazegate/mailer.ex
 !lib/hazegate/metrics.ex
+!lib/hazegate/release.ex
 !lib/hazegate/repo.ex
 
 !lib/hazegate/logging/
 !lib/hazegate/logging/error_log.ex
 !lib/hazegate/logging/ingest.ex
 !lib/hazegate/logging/logger_backend.ex
+
+!lib/hazegate/repo/
+
+!lib/hazegate/repo/migrations/
+!lib/hazegate/repo/migrations/create_error_logs.ex
 
 !lib/hazegate/worker/
 !lib/hazegate/worker/*.ex
@@ -99,6 +107,10 @@ assets/vendor/topbar.js
 !lib/hazegate_web/views/
 !lib/hazegate_web/views/dashboard_view.ex
 !lib/hazegate_web/views/error_helpers.ex
+
+!postgres/
+!postgres/postgresql.conf
+!postgres/pg_hba.conf
 
 !priv/
 
