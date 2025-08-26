@@ -47,7 +47,5 @@ defmodule HazegateWeb.Endpoint do
 
   plug Plug.Session, @session_options
 
-  plug HazegateWeb.Plugs.ErrorCapture
-
   plug HazegateWeb.Router
 end

@@ -17,4 +17,4 @@ config :swoosh,
   local: false
 
 config :logger,
-  level: :info
+  level: :debug

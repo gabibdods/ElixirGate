@@ -1,0 +1,25 @@
+services:
+  hgdb:
+    image: postgres:16
+    container_name: hgdb
+    env_file: [.env]
+    expose: [5432]
+    volumes: [postgres_data:/var/lib/postgresql/data]
+    restart: unless-stopped
+    networks: [gabibdods]
+
+  hgpr:
+    build: .
+    container_name: hgpr
+    env_file: [.env]
+    ports: [4000:4000]
+    depends_on: [hgdb]
+    restart: unless-stopped
+    networks: [gabibdods]
+
+volumes:
+  postgres_data:
+
+networks:
+  gabibdods:
+    external: true

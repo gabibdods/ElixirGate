@@ -5,15 +5,16 @@ defmodule Hazegate.Repo do
   def init(_type, config) do
     {:ok,
       Keyword.merge(config,
-#        username: System.fetch_env!("POSTGRES_USER"),
-#        password: System.fetch_env!("POSTGRES_PASSWORD"),
-#        hostname: System.fetch_env!("POSTGRES_HOST"),
-#        database: System.fetch_env!("POSTGRES_DB")
-         socket_options: [],
-         stacktrace: true,
-         ssl: true,
-         pool_size: 20,
-         pool_count: 3
+        port: 5432,
+        socket_options: [:inet],
+        stacktrace: true,
+        ssl: [
+          cacertfile: "/etc/ssl/certs/ca-certificates.crt",
+          verify: :verify_peer,
+          server_name_indication: ''
+        ],
+        pool_size: 20,
+        pool_count: 3
       )
     }
   end
